@@ -139,6 +139,27 @@ public final class ModsCommand implements CommandExecutor {
                     Map.of("%value%", messages.raw("messages.mods-unavailable")));
         }
 
+        // Channel-based hints (not a real mod list, see ChannelDetector)
+        if (plugin.getConfig().getBoolean("channels.enabled", true)) {
+            ChannelDetector detector = plugin.getChannelDetector();
+            List<ChannelDetector.Entry> entries = detector.detect(target);
+            int count = detector.countChannels(entries);
+            viewer.sendMessage(net.kyori.adventure.text.Component.empty());
+            messages.send(viewer, "info.channels-count", Map.of("%count%", String.valueOf(count)));
+            messages.send(viewer, "info.channels-hint");
+            boolean showRaw = plugin.getConfig().getBoolean("channels.show-raw-ids", false);
+            for (ChannelDetector.Entry entry : entries) {
+                messages.send(viewer, "info.channel-entry", Map.of(
+                        "%name%", entry.displayName(),
+                        "%count%", String.valueOf(entry.channels().size())));
+                if (showRaw) {
+                    for (String channel : entry.channels()) {
+                        messages.send(viewer, "info.channel-raw", Map.of("%channel%", channel));
+                    }
+                }
+            }
+        }
+
         messages.send(viewer, "info.footer");
     }
 }

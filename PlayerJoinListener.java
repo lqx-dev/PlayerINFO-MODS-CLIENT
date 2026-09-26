@@ -61,5 +61,10 @@ public final class PlayerJoinListener implements Listener {
             messages.sendPrefixed(player, "join.mods-unavailable",
                     Map.of("%value%", messages.raw("messages.mods-unavailable")));
         }
+        if (plugin.getConfig().getBoolean("channels.enabled", true)) {
+            ChannelDetector detector = plugin.getChannelDetector();
+            int count = detector.countChannels(detector.detect(player));
+            messages.sendPrefixed(player, "join.channels", Map.of("%count%", String.valueOf(count)));
+        }
     }
 }

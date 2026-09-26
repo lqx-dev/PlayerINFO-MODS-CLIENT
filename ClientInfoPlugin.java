@@ -22,16 +22,21 @@ public final class ClientInfoPlugin extends JavaPlugin {
     private PlayerSettings playerSettings;
     private ClientDetector clientDetector;
     private ModListManager modListManager;
+    private ChannelDetector channelDetector;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        // Add any new config keys from the bundled default config (keeps user changes).
+        getConfig().options().copyDefaults(true);
+        saveConfig();
 
         this.messages = new MessageUtil(this);
         this.playerSettings = new PlayerSettings(this);
         this.playerSettings.load();
         this.clientDetector = new ClientDetector(this);
         this.modListManager = new ModListManager();
+        this.channelDetector = new ChannelDetector();
 
         // Command
         PluginCommand command = getCommand("mods");
@@ -70,6 +75,8 @@ public final class ClientInfoPlugin extends JavaPlugin {
     /** Reloads config.yml and players.yml from disk. */
     public void reloadAll() {
         reloadConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
         messages.reload();
         playerSettings.load();
     }
@@ -88,5 +95,9 @@ public final class ClientInfoPlugin extends JavaPlugin {
 
     public ModListManager getModListManager() {
         return modListManager;
+    }
+
+    public ChannelDetector getChannelDetector() {
+        return channelDetector;
     }
 }

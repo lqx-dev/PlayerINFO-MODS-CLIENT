@@ -9,6 +9,13 @@ join-notification:
   # The client brand is only sent by the client shortly after joining, so a short delay is needed.
   delay-ticks: 40
 
+channels:
+  # Show hints based on the network channels the client registered.
+  # Many mods register channels, so this hints at installed mods – but it is NOT a full mod list.
+  enabled: true
+  # Also list the raw channel IDs under each entry (e.g. xaerominimap:main).
+  show-raw-ids: false
+
 messages:
   prefix: "&8[&bClientInfo&8] &r"
   no-permission: "&cYou don't have permission."
@@ -33,6 +40,10 @@ info:
   mods-count: "&7Mods: &f%count%"
   mods-unavailable: "&7Mods: &c%value%"
   mod-entry: "&7- &f%mod%"
+  channels-count: "&7Detected channels: &f%count%"
+  channels-hint: "&8(hints only – not a complete mod list)"
+  channel-entry: "&7- &f%name% &8(%count%)"
+  channel-raw: "&8    %channel%"
   footer: "&7================================"
 
 join:
@@ -40,3 +51,4 @@ join:
   client: "&7Your client: &f%client%"
   mods-count: "&7Mod list: &f%count% mods detected."
   mods-unavailable: "&7Mod list: &c%value%"
+  channels: "&7Detected channels: &f%count%"
