@@ -6,7 +6,7 @@
 
     <groupId>de.clientinfo</groupId>
     <artifactId>ClientInfo</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>ClientInfo</name>
@@ -35,6 +35,19 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+
+        <!-- Flat layout: all .java files and plugin.yml/config.yml live directly in the project root. -->
+        <sourceDirectory>${project.basedir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>plugin.yml</include>
+                    <include>config.yml</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -42,6 +55,9 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>21</release>
+                    <excludes>
+                        <exclude>target/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
