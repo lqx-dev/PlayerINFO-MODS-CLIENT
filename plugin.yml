@@ -1,0 +1,25 @@
+name: ClientInfo
+version: 1.0.0
+main: de.clientinfo.ClientInfoPlugin
+api-version: '1.21'
+author: _lqx
+description: Shows which client a player joined with and, if available, their mod list.
+
+commands:
+  mods:
+    description: Show client information about a player.
+    usage: /mods <player|self|join|reload>
+
+permissions:
+  clientinfo.mods:
+    description: Allows /mods <player>
+    default: op
+  clientinfo.mods.self:
+    description: Allows /mods self
+    default: true
+  clientinfo.join:
+    description: Allows /mods join (toggle own join notification)
+    default: true
+  clientinfo.reload:
+    description: Allows /mods reload
+    default: op

@@ -1,0 +1,42 @@
+# ClientInfo configuration
+# Colors use the & color code format, e.g. &a = green, &c = red, &7 = gray.
+# Placeholders: %player%, %client%, %count%, %brand%
+
+join-notification:
+  # If true, players receive the join notification without running /mods join first.
+  enabled-by-default: false
+  # Ticks to wait after join before sending the notification (20 ticks = 1 second).
+  # The client brand is only sent by the client shortly after joining, so a short delay is needed.
+  delay-ticks: 40
+
+messages:
+  prefix: "&8[&bClientInfo&8] &r"
+  no-permission: "&cYou don't have permission."
+  players-only: "&cThis command can only be used by players."
+  player-not-found: "&cPlayer not found."
+  player-offline: "&cPlayer %player% is offline. Client information is only available for online players."
+  invalid-name: "&cInvalid player name."
+  usage: "&7Usage: &f/mods <player|self|join|reload>"
+  reload-success: "&aConfiguration reloaded."
+  join-enabled: "&aJoin notification enabled."
+  join-disabled: "&cJoin notification disabled."
+  unknown-client: "Unknown"
+  # Used when the client sent a brand we don't recognize. Set to the same as unknown-client to hide the raw brand.
+  unknown-client-with-brand: "Unknown (%brand%)"
+  mods-unavailable: "Not available"
+
+info:
+  header: "&7================================"
+  title: "&b        ClientInfo"
+  player: "&7Player: &f%player%"
+  client: "&7Client: &f%client%"
+  mods-count: "&7Mods: &f%count%"
+  mods-unavailable: "&7Mods: &c%value%"
+  mod-entry: "&7- &f%mod%"
+  footer: "&7================================"
+
+join:
+  welcome: "&aWelcome back!"
+  client: "&7Your client: &f%client%"
+  mods-count: "&7Mod list: &f%count% mods detected."
+  mods-unavailable: "&7Mod list: &c%value%"
